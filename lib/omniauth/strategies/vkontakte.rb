@@ -94,7 +94,7 @@ module OmniAuth
             :access_token => access_token.token
           }
           country = access_token.get('/method/getCountries', :params => params).parsed['response']
-          return country.first ? country.first['name'] : ''
+          return country.try(:first) ? country.first['name'] : ''
         else
           return ''
         end
